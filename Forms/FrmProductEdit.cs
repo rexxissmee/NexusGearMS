@@ -193,13 +193,14 @@ namespace NexusGearMS.Forms
             string sql = @"
                 UPDATE PRODUCT
                 SET ProductName = @name, CategoryID = @catId, SellPrice = @price,
-                    ReorderLevel = @reorder, IsActive = @active
+                    InventoryQty = @inv, ReorderLevel = @reorder, IsActive = @active
                 WHERE ProductID = @id";
 
             Db.ExecuteNonQuery(sql, null,
                 new SqlParameter("@name", txtName.Text.Trim()),
                 new SqlParameter("@catId", cboCategory.SelectedValue),
                 new SqlParameter("@price", decimal.Parse(txtPrice.Text)),
+                new SqlParameter("@inv", int.Parse(txtInventory.Text)),
                 new SqlParameter("@reorder", int.Parse(txtReorder.Text)),
                 new SqlParameter("@active", chkActive.Checked),
                 new SqlParameter("@id", productId.Value));
